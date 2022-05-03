@@ -3,30 +3,31 @@ class Articles:
      class to define news article objects
     """
     
-    def __init__(self,author,description,imageurl,time,title):
+    def __init__(self,author,title,imageurl,publishedAt,url):
         self.author = author
-        self.description = description
+        self.url = url
         self.imageurl = imageurl
-        self.time = time
+        self.publishedAt = publishedAt
         self.title = title
         
 class Breaking:
     """
     class to define news articles object
     """
-    def __init__(self,title,imageurl):
+    def __init__(self,title,imageurl,url):
        self.title = title
        self.imageurl = imageurl
-       
+       self.url = url
 class Keyword:
     """
     class to define news articles object
     """  
-    def __init__(self,author,title,imageurl,time):
+    def __init__(self,author,title,imageurl,publishedAt,url):
         self.author = author
         self.title = title
         self.imageurl = imageurl
-        self.time = time
+        self.publishedAt = publishedAt
+        self.url = url
 
 class Sources:
     """

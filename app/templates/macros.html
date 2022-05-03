@@ -1,0 +1,17 @@
+{% macro displaySourcesList(sources_list)%}
+{% for sources in sources_list%}
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="language">{{sources.language}}</div>
+            <a href={{sources.url}} target ="_blank"><h4 class="card-title">{{sources.name}}<span class="tooltiptext">Visit{{sources.name}}</span></h4></a>
+            <h4 class="card-subtitle mb-8 text-muted">{{sources.category}}</h4>
+            <p class ="card-text">{{sources.description}}</p>
+            <br>
+            <a href="/source/{{sources.id}}" class="card-link">View Articles</a>
+            <br>
+        </div>
+    </div>
+</div>
+{% endfor%}
+{% endmacro%}

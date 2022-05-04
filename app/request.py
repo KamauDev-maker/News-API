@@ -1,19 +1,27 @@
 import urllib.request,json
 from .models import Sources,Articles,Keyword,Breaking
 
-api_key = None
-base_url = None
+api_Key= None
+base_url= None
+top_articles_url= None
+keyword_url= None
+breaking_news_url= None
+
 
 def configure_request(app):
-    global api_key,base_url
-    api_key = app.config['NEWS_API_KEY']
-    base_url = app.config['NEWS_API_BASE_URL']
+    global api_Key, base_url, top_articles_url, keyword_url, breaking_news_url
+    api_Key = app.config['NEWS_API_KEY']
+    base_url = app.config["NEWS_API_BASE_URL"]
+    top_articles_url = app.config["NEWS_API_TOP_ARTICLES_BASE_URL"]
+    keyword_url = app.config["NEWS_API_SEARCH_KEYWORD_BASE_URL"]
+    breaking_news_url = app.config["NEWS_API_BREAKING_NEWS_BASE_URL"]
 
 def get_sources():
     '''
     function that gets the json response to our url request
     '''
-    get_sources_url = base_url.format(api_key)
+    get_sources_url = base_url.format('3d022a8956c34986b22de4568f411a54')
+    
     with urllib.request.urlopen(get_sources_url) as url:
         get_sources_data = url.read()
         get_sources_response = json.loads(get_sources_data)
@@ -38,7 +46,7 @@ def process_sources(sources_list):
         id = sources_item.get('id')
         name = sources_item.get('name')
         description =sources_item.get('description')
-        url =sources_list.get('url')
+        url =sources_item.get('url')
         category = sources_item.get('category')
         language = sources_item.get('language')
         
@@ -50,7 +58,7 @@ def get_top_articles(id):
     '''
     Function that gets the json response to our url request
     '''
-    get_articles_url = top_articles_url.format(id, api_Key)
+    get_articles_url = top_articles_url.format(id, '3d022a8956c34986b22de4568f411a54')
 
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
@@ -79,7 +87,7 @@ def process_articles(articles_list):
     return articles_results
 
 def get_keyword(keyword_name):
-    search_keyword_url = keyword_url.format(keyword_name, api_Key)
+    search_keyword_url = keyword_url.format(keyword_name, '3d022a8956c34986b22de4568f411a54')
     with urllib.request.urlopen(search_keyword_url) as url:
         search_keyword_data = url.read()
         search_keyword_response = json.loads(search_keyword_data)
@@ -108,7 +116,7 @@ def process_keyword(keyword_list):
     return keyword_results
 
 def get_breaking_news():
-    get_breaking_news_url = breaking_news_url.format(api_Key)
+    get_breaking_news_url = breaking_news_url.format('3d022a8956c34986b22de4568f411a54')
 
     with urllib.request.urlopen(get_breaking_news_url) as url:
         get_breaking_data = url.read()

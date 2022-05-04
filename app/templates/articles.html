@@ -2,6 +2,8 @@
 {% import 'macros.html' as macro%}
 
 {% block styles %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/articles.css')}}" type="text/css">
+
 {{ super() }}
 {% endblock %}
 
